@@ -1,20 +1,17 @@
-const allFunctions = {
-  add: (num1, num2) => {
-    return num1 + num2
+const axios = require('axios');
+
+const functions = {
+  fetchUser_jsonplaceholder: () => {
+    var endpoint = 'https://jsonplaceholder.typicode.com/users/1';
+    return axios.get(endpoint).then( res => res.data ).catch( err => 'error');
   },
-  isNull : () => {
-    return null;
+  dummyFunc: () => {
+    return 5;
   },
-  checkValue: (x) => {
-    return x;
+  fetchUser_reqresin: () => {
+    var endpoint = 'https://reqres.in/api/users/2';
+    return axios.get(endpoint).then( res => res.data.data ).catch(err => 'error');
   },
-  createUser: () => {
-    const user = {
-      fullname: "Don Corleone",
-      email: "test@underground.com"
-    }
-    return user;
-  }
 }
 
-module.exports = allFunctions;
+module.exports = functions;

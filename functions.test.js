@@ -1,55 +1,29 @@
-const allFunctions = require('./functions');
+const asyncfunctions = require('./functions')
 
-test('Adds 2 + 2 to equal 4', () => {
-  expect(allFunctions.add(2,2)).toBe(4);
+test("Some Randome Test", () => {
+  expect(asyncfunctions.dummyFunc()).toBe(5);
 });
 
-test('Adds 3 + 3 to not equal 5', () => {
-  expect(allFunctions.add(3,3)).not.toBe(5);
+test('User Fetched name should be Learne Graham', ()=> {
+  expect.assertions(1);
+  const name = 'Leanne Graham';
+  return asyncfunctions.fetchUser_jsonplaceholder().then( api_data => {
+    expect( api_data.name ).toEqual(name);
+  });
 });
 
-test('Should be null', () => {
-  expect(allFunctions.isNull()).toBeNull();
+test('User Fetched first_name should be Janet', () => {
+  expect.assertions(1);
+  const first_name = 'Janet';
+  return asyncfunctions.fetchUser_reqresin().then( api_data => {
+    expect( api_data.first_name).toEqual(first_name);
+  });
 });
 
-test('Should be Falsy', () => {
-  expect(allFunctions.checkValue(null)).toBeFalsy();
-  expect(allFunctions.checkValue(0)).toBeFalsy();
-  expect(allFunctions.checkValue(undefined)).toBeFalsy();
+test('User Fetched username should be Bret', async () => {
+  const api_data = await  asyncfunctions.fetchUser_jsonplaceholder();
+  const username = 'Bret';
+  expect(api_data.username).toEqual(username);
 });
 
-test('User should be DC', () => {
-  const userObj = {
-    fullname: 'Don Corleone',
-    email : 'test@underground.com'
-  }
-  expect( allFunctions.createUser() ).toEqual(userObj);
-
-  const contactObj = {
-    fullname: 'Don Corleone',
-    cell : '+00142124745'
-  }
-  expect( allFunctions.createUser() ).toEqual(contactObj);
-});
-
-
-test("Should be under 1400", () => {
-  const load1 = 800;
-  const load2 = 600;
-  const totalLoad = load1 + load2;
-  expect(totalLoad).toBeLessThan(1400);
-});
-
-test("There is no I in team", () => {
-  expect('team').not.toMatch(/I/);
-});
-
-test('Admin should be in usernames', () => {
-  const usernames = ['mark', 'ben', 'harry'];
-  expect(usernames).toContain('admin');
-});
-
-test('Fish should be in items', () => {
-  const items = ['fish', 'cat', 'fly'];
-  expect(items).toContain('fish');
-})
+test
